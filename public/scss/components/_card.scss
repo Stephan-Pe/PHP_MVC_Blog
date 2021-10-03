@@ -1,0 +1,31 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/breakpoints" as *;
+
+.regcard {
+  margin: 2rem auto 3rem;
+  padding: 0 0.5rem 1.4rem;
+  -webkit-box-shadow: 0 4px 6px -6px $graytext;
+  -moz-box-shadow: 0 4px 6px -6px $graytext;
+  box-shadow: 0 4px 6px -6px $graytext;
+  &__title {
+    font-size: clamp(1.4rem, -0.875rem + 3vw, 2.2rem);
+    margin-bottom: 1.6rem;
+    color: $graytext;
+    font-weight: 400;
+  }
+  &__info {
+    margin-top: -4px;
+    padding: 0.5rem 0;
+    background-color: $sand;
+    font-size: clamp(1rem, -0.875rem + 1.8vw, 1.2rem);
+    color: $graytext;
+    font-style: italic;
+  }
+  &__text {
+    margin: 1rem auto;
+    letter-spacing: 1.2px;
+    font-size: clamp(1.15rem, -0.875rem + 2vw, 1.4rem);
+    font-weight: 600;
+    line-height: 1.6;
+  }
+}

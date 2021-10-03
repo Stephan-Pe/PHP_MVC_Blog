@@ -1,0 +1,24 @@
+@use "./abstracts/breakpoints" as *;
+@use "./abstracts/reset";
+@use "./abstracts/colors" as *;
+@use "./components/main";
+@use "./components/mainpage";
+@use "./components/button";
+@use "./components/imageDrop";
+@use "./components/navigation";
+@use "./components/footer";
+@use "./components/card";
+@use "./components/postsindex";
+@use "./components/addposts";
+
+html {
+  width: 100%;
+  height: 100%;
+  font-family: "Yaldevi", sans-serif;
+}
+body {
+  background-color: $body;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}

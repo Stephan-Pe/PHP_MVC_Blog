@@ -1,0 +1,30 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/breakpoints" as *;
+
+.body__background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url("https://cdn.pixabay.com/photo/2018/03/03/13/15/sunset-3195637_960_720.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+}
+.bigcard {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 4rem auto;
+  text-align: center;
+  color: $body;
+}

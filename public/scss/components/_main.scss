@@ -1,0 +1,16 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/breakpoints" as *;
+@media (max-width: $medium) {
+  .main {
+    padding: 0.4 rem;
+  }
+}
+.main {
+  padding: 0;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  max-width: 800px;
+  min-height: 100vh;
+  margin: 0 auto;
+}

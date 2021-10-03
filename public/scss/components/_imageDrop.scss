@@ -1,0 +1,53 @@
+@use "../abstracts/colors" as *;
+.drop__zone {
+  max-width: 200px;
+  height: 200px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-weight: 500;
+  color: #cccccc;
+  font-size: 2rem;
+  border: 4px dashed #40e0d0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.drop__zone--over {
+  border-style: solid;
+}
+.drop__zone--input {
+  opacity: 0;
+  height: 0;
+}
+.drop__zone--prompt {
+  font-size: 1.1rem;
+}
+.drop__zone--thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #cccccc;
+  background-size: cover;
+  position: relative;
+}
+.image-feedback {
+  font-size: clamp(1.1rem, 1.25rem, 1.4rem);
+  font-weight: 600;
+  color: $error;
+}
+.drop__zone--thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  columns: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 1rem;
+  text-align: center;
+}

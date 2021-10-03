@@ -1,0 +1,19 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/breakpoints" as *;
+
+.invalid-feedback {
+  display: none;
+  margin-top: 0.25 rem;
+  font-size: 0.875rem;
+  color: #dc3545;
+}
+.sand {
+  background-color: $sand;
+}
+.title_err {
+  color: red;
+}
+.spacer {
+  display: block;
+  height: 15px;
+}

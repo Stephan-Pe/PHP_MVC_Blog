@@ -1,0 +1,114 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/breakpoints" as *;
+
+.topnav {
+  display: flex;
+  min-height: 8vh;
+  align-items: center;
+  background-color: $header;
+  &__brand {
+    margin-left: 2rem;
+    a {
+      color: $body;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: clamp(1.3rem, 1.6rem, 1.7rem);
+    }
+  }
+  &__menu {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+  }
+  &__link {
+    text-decoration: none;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: clamp(1.15rem, 1.25rem, 1.4rem);
+    color: $body;
+  }
+  &__toggle {
+    display: none;
+    cursor: pointer;
+  }
+  &__toggle span {
+    display: block;
+    width: 2.8rem;
+    height: 0.3rem;
+    margin: 0.5rem;
+    background-color: $body;
+  }
+  &__nav,
+  &__user {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    list-style-type: none;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: $medium) {
+  .topnav {
+    justify-content: space-between;
+    &__menu {
+      position: absolute;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      top: 8vh;
+      right: 0px;
+      height: 98vh;
+      transform: translateX(100%);
+      transition: transform 500ms ease-in;
+      background-color: $header;
+    }
+    &__menu.active {
+      transform: translateX(0);
+    }
+    &__nav,
+    &__user {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      margin: 0 auto;
+      height: 30%;
+      width: 80%;
+    }
+    &__toggle {
+      display: block;
+      margin-right: 2rem;
+    }
+    &__link {
+      opacity: 0;
+    }
+  }
+  .cross .topnav__toggle--icon1 {
+    transform: rotate(-45deg) translate(-5px, 12px);
+    transition: transform 500ms ease-in;
+  }
+  .cross .topnav__toggle--icon2 {
+    opacity: 0;
+    transition: opacity 500ms ease-in;
+  }
+  .cross .topnav__toggle--icon3 {
+    transform: rotate(45deg) translate(-5px, -12px);
+    transition: transform 350ms ease-in;
+  }
+  @keyframes navLinkFade {
+    0% {
+      opacity: 0;
+      transform: translateX(3rem);
+    }
+    1% {
+      opacity: 0;
+      transform: translateX(2.8rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0rem);
+    }
+  }
+}

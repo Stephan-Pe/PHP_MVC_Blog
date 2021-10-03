@@ -1,0 +1,42 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/breakpoints" as *;
+.button {
+  font-size: clamp(1rem, -0.875rem + 3vw, 1.4rem);
+  padding: 0.6rem 1rem;
+  color: $body;
+
+  margin: 2rem 0;
+  text-decoration: none;
+}
+.button__primary {
+  border-radius: 10px;
+  background: $turq;
+}
+#pencil {
+  fill: $body;
+}
+.go-back {
+  fill: $header;
+  color: $header;
+  font-weight: 600 !important;
+}
+.icon {
+  height: 1rem;
+  vertical-align: middle;
+}
+.button__secondary {
+  outline: none !important;
+  font-weight: 600;
+  color: $header;
+}
+.button__success {
+  color: $body;
+  background-color: $tango;
+  font-weight: 600;
+  border-radius: 0.3rem;
+  border: 1px solid transparent;
+}
+.button:focus,
+.button:hover {
+  color: $header;
+}

@@ -30,9 +30,7 @@
                     <div class="col">
                         <input type="submit" value="Email Bestätigen" class="btn btn-primary btn-block">
                     </div>
-                    <div class="col">
-                        <a href="<?php echo URLROOT; ?>/users/login" class="btn btn-success btn-block">Anmelden</a>
-                    </div>
+
 
                 </div>
 

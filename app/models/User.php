@@ -25,6 +25,23 @@ class User
             return false;
         }
     }
+    // Register user
+    public function loginAttemps($user_id, $remote)
+    {
+        $timestamp = time();
+        $this->db->query('INSERT INTO loginattemps (user_id, remote, timestamp ) VALUES (:user_id, :remote, :timestamp)');
+        $this->db->bind(':user_id', $user_id);
+        $this->db->bind(':remote', $remote);
+        $this->db->bind(':timestamp', $timestamp);
+
+
+        // Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // Login User
     public function login($email, $password)
@@ -37,6 +54,31 @@ class User
         $hashed_password = $row->password;
         if (password_verify($password, $hashed_password)) {
             return $row;
+        } else {
+            return false;
+        }
+    }
+    public function pwdrequest($data)
+    {
+        $this->db->query('UPDATE users SET token= :token WHERE email= :email');
+        $this->db->bind(':token', $data['token']);
+        $this->db->bind(':email', $data['email']);
+        // Execute
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function updatepwd($data)
+    {
+        $this->db->query('UPDATE users SET password= :password WHERE token= :token AND email= :email');
+        $this->db->bind(':password', $data['password']);
+        $this->db->bind(':token', $data['token']);
+        $this->db->bind(':email', $data['email']);
+        // Execute
+        if ($this->db->execute()) {
+            return true;
         } else {
             return false;
         }
@@ -57,6 +99,18 @@ class User
             return false;
         }
     }
+    // check for bruteforce attacs
+    public function checkBrute($user_id)
+    {
+        $hourAgo = time() - 60 * 60;
+        $this->db->query("SELECT COUNT(user_id) FROM loginattemps AS Total_Entries WHERE user_id = $user_id AND timestamp >= $hourAgo GROUP BY user_id");
+        $this->db->bind(':user_id', $user_id);
+        $results = $this->db->bruteVal();
+        $result = [...$results];
+
+        // Execute
+        return $result;
+    }
     // Get user status
     public function getUserStatus($email)
     {
@@ -68,6 +122,18 @@ class User
         $status = $row->status;
 
         return $status;
+    }
+    // Get user status
+    public function getUserId($email)
+    {
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        // Bind value
+        $this->db->bind(':email', $email);
+
+        $row = $this->db->single();
+        $user_id = $row->id;
+
+        return $user_id;
     }
 
     // Find user by email

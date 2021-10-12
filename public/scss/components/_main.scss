@@ -2,6 +2,16 @@
 @use "../abstracts/breakpoints" as *;
 @media (max-width: $medium) {
   .main {
+    min-height: 100%;
+    width: 100%;
+
+    grid-auto-columns: 1em 1fr 1em;
+  }
+}
+@media (max-width: $large) {
+  .main {
+    min-height: 100%;
+    width: 100%;
     padding: 0.4 rem;
   }
 }
@@ -10,7 +20,36 @@
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
-  max-width: 800px;
-  min-height: 100vh;
+  max-width: 1000px;
+  width: 96vw;
   margin: 0 auto;
+}
+/**
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+.cf:after {
+  clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+  *zoom: 1;
+}
+.user__info {
+  color: $body;
 }

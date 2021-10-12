@@ -12,13 +12,27 @@
 @use "./components/addposts";
 
 html {
+  position: relative;
   width: 100%;
   height: 100%;
-  font-family: "Yaldevi", sans-serif;
+  font-family: "Yaldevi", sans-serif !important;
 }
 body {
-  background-color: $body;
-  overflow-x: hidden;
+  padding: 0.4 rem;
+  display: grid !important;
+  flex-direction: column;
+  min-height: 100%;
   width: 100%;
-  min-height: 100vh;
+}
+.icon {
+  display: inline-block;
+  width: 1.2rem;
+  fill: $gray;
+}
+.hero__img {
+  max-width: 96%;
+  margin: 0 auto;
+}
+.lorem {
+  opacity: 0;
 }

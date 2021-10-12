@@ -11,11 +11,10 @@ class Users extends Controller
         // Check for posts
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Process form
-            // $otp = rand(100000, 999999);
+
             $token = bin2hex(random_bytes(8));
             $_SESSION['token'] = $token;
-            // $token = bin2hex(random_bytes(8));
-            // $expires = date("U") + 1800;
+
             // sanatize post data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             // Init Data
@@ -75,12 +74,11 @@ class Users extends Controller
                     $url = URLROOT . "/users/verify?email=" . $email . "&token=" . $token;
                     $to = $email;
 
-                    $subject = 'Setze ein neues Passwort für Deinen Account';
+                    $subject = 'Bestätige Deinen Account';
 
-                    $message = '<p>Wir haben eine E-mailanfrage für das zurücksetzen Deines Passwortes erhalten,
-                    sollte diese Anfrage nicht von Dir sein kannst Du dieses E-mail ignorieren.</p> ';
+                    $message = '<p>Solltest Du Dich nicht bei uns registriert haben kannst Du dieses E-mail ignorieren.</p> ';
 
-                    $message .= '<p> Hier ist der Link zum zurücksetzen Deines Passwortes: </br><br>';
+                    $message .= '<p> Hier ist der Link zum bestätigen Deiner Email Adresse: </br><br>';
                     $message .= '<a href="' . $url . '">' . $url . '</a></p>';
                     $message .= "<p>Lieber User, </p> <h3>Willkommen in der " . SITENAME . " Familie<br></h3>
                     <br><br>";
@@ -134,9 +132,12 @@ class Users extends Controller
             $data = [
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
+                'remote' => $_POST['remote'],
                 'email_err' => '',
                 'password_err' => '',
             ];
+
+
 
             // Validate Email
             if (empty($data['email'])) {
@@ -151,11 +152,18 @@ class Users extends Controller
             // Check for user/email
             if ($this->userModel->findUserByEmail($data['email'])) {
                 // User found
+                $user_id = $this->userModel->getUserId($data['email']);
             } else {
                 // User not found
                 $data['email_err'] = 'Konto nicht gefunden';
             }
-            // Check for user/status
+            if ($this->userModel->loginAttemps($user_id, $data['remote'])) {
+                $results = $this->userModel->checkBrute($user_id);
+                $count = array_sum(...$results);
+                if ($count >= MAX_LOGIN_ATTEMPS_PER_HOUR) {
+                    $data['email_err'] = 'Sorry zu viele Serveranfragen bitte versuchen Sie es später!';
+                }
+            } else 
             if ($this->userModel->getUserStatus($data['email'])) {
                 $status = $this->userModel->getUserStatus($data['email']);
                 if ($status == 'pending') {
@@ -244,6 +252,163 @@ class Users extends Controller
             ];
 
             $this->view('users/verify', $data);
+        }
+    }
+    public function pwdrequest()
+    {
+
+        // Check for POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Process form
+            $token = bin2hex(random_bytes(8));
+            // Sanitize POST data
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // Init data
+            $data = [
+                'token' => $token,
+                'email' => trim($_POST['email']),
+                'token_err' => '',
+                'email_err' => '',
+
+            ];
+
+
+
+            // Validate Email
+            if (empty($data['email'])) {
+                $data['email_err'] = 'Bitte Email eingeben.';
+            }
+
+            // Check for user/email
+            if ($this->userModel->findUserByEmail($data['email'])) {
+                // User found
+
+            } else {
+                // User not found
+                $data['email_err'] = 'Konto nicht gefunden';
+            }
+
+            // Make sure errors are empty
+            if (empty($data['email_err'])) {
+                if ($this->userModel->pwdrequest($data)) {
+
+                    $email = $_POST['email'];
+                    // $url = URLROOT . "/users/verify?validator=" . $token;
+                    $url = URLROOT . "/users/pwdreset?email=" . $email . "&token=" . $token;
+                    $to = $email;
+
+                    $subject = 'Setze ein neues Passwort für Deinen Account';
+
+                    $message = '<p>Wir haben eine E-mailanfrage für das zurücksetzen Deines Passwortes erhalten,
+                    sollte diese Anfrage nicht von Dir sein kannst Du dieses E-mail ignorieren.</p> ';
+
+                    $message .= '<p> Hier ist der Link zum zurücksetzen Deines Passwortes: </br><br>';
+                    $message .= '<a href="' . $url . '">' . $url . '</a></p>';
+                    $message .= "<p>Lieber User, </p> <h3>Willkommen in der " . SITENAME . " Familie<br></h3>
+                    <br><br>";
+
+                    $headers = "From: siteart <siteart@feritel.swiss>\r\n";
+                    $headers .= "Reply-To: siteart <siteart@feritel.swiss>\r\n";
+                    $headers .= "Content-type: text/html\r\n";
+
+
+                    mail($to, $subject, $message, $headers);
+
+                    flash('register_success', 'Checke Deine Mail zum zurücksetzen Deines Passwortes ✉ !');
+
+                    $this->view('users/pwdrequest', $data);
+                } else {
+                    die('Unerwarteter Fehler 🔥');
+                }
+            } else {
+                // Load view with errors
+                $this->view('users/pwdrequest', $data);
+            }
+        } else {
+            // Init data
+            $data = [
+                'token' => '',
+                'email' => '',
+                'token_err' => '',
+                'email_err' => '',
+            ];
+
+            // Load view
+            $this->view('users/pwdrequest', $data);
+        }
+    }
+    public function pwdreset()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'token' => trim($_POST['token']),
+                'email' => trim($_POST['email']),
+                'password' => trim($_POST['password']),
+                'confirm_password' => trim($_POST['confirm_password']),
+                'token_err' => '',
+                'email_err' => '',
+                'password_err' => '',
+                'confirm_password_err' => ''
+            ];
+            // Validate data
+            if (empty($data['token'])) {
+                $data['token_err'] = 'Token Error 🔥!';
+            }
+
+            if ($this->userModel->findUserByEmail($data['email'])) {
+            } else {
+                // User not found
+                $data['email_err'] = 'Konto nicht gefunden';
+            }
+            // Validate password
+            if (empty($data['password'])) {
+                $data['password_err'] = 'Bitte neues Passwort eingeben.';
+            } elseif (!preg_match('/^(?=.*[!@#$%^&*-])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,30}$/', $data['password'])) {
+                $data['password_err'] = 'Das Passwort muss mindestens 8 Zeichen haben, davon ein Grossbuchstabe eine Zahl und ein Sonderzeichen';
+            }
+            // Validate password
+            if (empty($data['confirm_password'])) {
+                $data['confirm_password_err'] = 'Bitte Passwort bestätigen';
+            } else {
+                if ($data['password'] != $data['confirm_password']) {
+                    $data['confirm_password_err'] = 'Passwörter stimmen nicht überein';
+                }
+            }
+            // Make shure errors are empty
+            if (empty($data['email_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+                // Validated
+
+                // Hash Password
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+                // Register Users
+                if ($this->userModel->updatepwd($data)) {
+                    flash('register_success', 'Dein Passwort wurde erfolgreich zurückgesetzt 👍!');
+                    $this->userModel->deleteUserToken($data['email']);
+
+                    redirect('users/login');
+                } else {
+
+                    die('Unerwarteter Fehler 🔥');
+                }
+            } else {
+                $this->view('users/pwdreset', $data);
+            }
+        } else {
+            // Load view with errors
+            $data = [
+                'token' => '',
+                'email' => '',
+                'password' => '',
+                'token_err' => '',
+                'email_err' => '',
+                'password_err' => '',
+            ];
+
+            $this->view('users/pwdreset', $data);
         }
     }
 

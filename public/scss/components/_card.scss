@@ -2,6 +2,8 @@
 @use "../abstracts/breakpoints" as *;
 
 .regcard {
+  display: flex;
+  flex-direction: column;
   margin: 2rem auto 3rem;
   padding: 0 0.5rem 1.4rem;
   -webkit-box-shadow: 0 4px 6px -6px $graytext;
@@ -15,7 +17,7 @@
   }
   &__info {
     margin-top: -4px;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     background-color: $sand;
     font-size: clamp(1rem, -0.875rem + 1.8vw, 1.2rem);
     color: $graytext;
@@ -23,6 +25,7 @@
   }
   &__text {
     margin: 1rem auto;
+    padding: 0.5rem;
     letter-spacing: 1.2px;
     font-size: clamp(1.15rem, -0.875rem + 2vw, 1.4rem);
     font-weight: 600;

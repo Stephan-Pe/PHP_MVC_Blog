@@ -1,4 +1,5 @@
-import { toggleNav } from "./topnav.js";
+import { toggleNav } from "./modules/topnav.js";
+import { showPassword } from "./modules/showPassword.js";
 const dropZoneInput = document.querySelectorAll(".drop__zone--input");
 const errorDisplay = document.querySelector(".image-feedback");
 const dropZonePromt = document.querySelector(".drop__zone--prompt");
@@ -119,4 +120,5 @@ function updateThumbnail(dropZoneElement, file) {
 
 document.addEventListener("DOMContentLoaded", function (event) {
   toggleNav();
+  showPassword();
 });

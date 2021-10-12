@@ -4,7 +4,9 @@
   font-size: clamp(1rem, -0.875rem + 3vw, 1.4rem);
   padding: 0.6rem 1rem;
   color: $body;
-
+  -moz-hyphens: none;
+  white-space: nowrap;
+  hyphens: none;
   margin: 2rem 0;
   text-decoration: none;
 }

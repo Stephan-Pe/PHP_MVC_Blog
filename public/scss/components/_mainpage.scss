@@ -8,8 +8,29 @@
   right: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background: url("https://cdn.pixabay.com/photo/2018/03/03/13/15/sunset-3195637_960_720.jpg");
+  background: url("../img/lugano.jpg"),
+    linear-gradient(180deg, rgba(20, 45, 84, 1) 15%, rgba(52, 86, 139, 1) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  z-index: -1;
+}
+.about__background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(20, 45, 84);
+  background: linear-gradient(
+    180deg,
+    rgba(20, 45, 84, 1) 15%,
+    rgba(52, 86, 139, 1) 100%
+  );
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

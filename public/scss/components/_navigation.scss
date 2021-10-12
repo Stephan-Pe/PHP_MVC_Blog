@@ -4,6 +4,7 @@
 .topnav {
   display: flex;
   min-height: 8vh;
+  height: 10vh;
   align-items: center;
   background-color: $header;
   &__brand {

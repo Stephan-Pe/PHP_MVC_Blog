@@ -39,7 +39,7 @@
     </span>
 
   </nav>
-  <main class="main">
+  <main class="main cf">
     <?php if (isset($_SESSION['user_id'])) : ?>
       <span class="user__info">
         <?php require_once(APPROOT . '/helpers/datetime.php');

@@ -1,34 +1,52 @@
 @use "../abstracts/colors" as *;
 @use "../abstracts/breakpoints" as *;
+@use "../abstracts/helpers" as *;
 
 .regcard {
   display: flex;
   flex-direction: column;
   margin: 2rem auto 3rem;
-  padding: 0 0.5rem 1.4rem;
-  -webkit-box-shadow: 0 4px 6px -6px $graytext;
-  -moz-box-shadow: 0 4px 6px -6px $graytext;
-  box-shadow: 0 4px 6px -6px $graytext;
+  padding: 1.2rem;
+  -webkit-box-shadow: $boxShadow;
+  -moz-box-shadow: $boxShadow;
+  box-shadow: $boxShadow;
+  border-radius: $borderRadius;
+  font-family: "Raleway", sans-serif;
   &__title {
-    font-size: clamp(1.4rem, -0.875rem + 3vw, 2.2rem);
+    font-size: clamp(1.4rem, calc(3vw + 0.875rem), 2.2rem);
+    font-weight: 600;
     margin-bottom: 1.6rem;
-    color: $graytext;
-    font-weight: 400;
+    color: $coral;
   }
   &__info {
     margin-top: -4px;
-    padding: 0.5rem;
-    background-color: $sand;
-    font-size: clamp(1rem, -0.875rem + 1.8vw, 1.2rem);
-    color: $graytext;
+    padding: 0.5rem 0;
+    font-size: clamp(1.15rem, calc(2vw + 0.875rem), 1.4rem);
+    color: $bg;
     font-style: italic;
+    font-weight: 600;
+    border-bottom: 2px solid $bg;
   }
   &__text {
-    margin: 1rem auto;
-    padding: 0.5rem;
+    margin: 1rem 0;
     letter-spacing: 1.2px;
-    font-size: clamp(1.15rem, -0.875rem + 2vw, 1.4rem);
-    font-weight: 600;
+    font-size: clamp(1.15rem, calc(2vw + 0.875rem), 1.4rem);
+    font-weight: 400;
     line-height: 1.6;
   }
+  &__smalltext {
+    margin: 1rem 0;
+    font-size: clamp(0.8rem, calc(2vw + 0.675rem), 1.3rem);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .row {
+    margin: 2rem 0;
+  }
+}
+.form-row {
+  display: flex;
+  padding: 1rem 0;
+  align-items: center;
+  justify-content: space-between;
 }

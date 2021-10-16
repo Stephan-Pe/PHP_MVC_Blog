@@ -1,15 +1,53 @@
 @use "../abstracts/colors" as *;
 @use "../abstracts/breakpoints" as *;
 
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
 .invalid-feedback {
   display: none;
   margin-top: 0.25 rem;
   font-size: 0.875rem;
   color: #dc3545;
 }
-.sand {
-  background-color: $sand;
+.form-control.is-invalid ~ .invalid-feedback {
+  display: block;
 }
+.form-group {
+  margin-bottom: 1rem;
+  label {
+    display: inline-block;
+    margin: 0.5rem 0;
+    font-size: clamp(1.15rem, calc(2vw + 0.8rem), 1.5rem);
+    touch-action: manipulation;
+  }
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0;
+  font-size: clamp(1.15rem, calc(2vw + 0.8rem), 1.5rem);
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  color: #495057;
+  background-color: $white;
+  background-image: none;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.3rem;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.form-head {
+  font-size: clamp(1.35rem, calc(3vw + 1rem), 1.8rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.form-subhead {
+  font-size: clamp(1.15rem, calc(2vw + 0.8rem), 1.5rem);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
 .title_err {
   color: red;
 }

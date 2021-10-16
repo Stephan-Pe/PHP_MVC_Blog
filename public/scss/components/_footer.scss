@@ -5,13 +5,17 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 8vh;
-  background-color: $turq;
+  margin-top: auto;
+  height: 8vh;
+  width: 100%;
+  background-color: $bg;
   span {
     display: inline-block;
+    color: $white;
     font-weight: 600;
   }
 }
+
 @media (max-width: $medium) {
   .footer {
     padding: 0.5rem 0;

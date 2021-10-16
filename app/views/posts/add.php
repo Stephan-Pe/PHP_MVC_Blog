@@ -1,13 +1,13 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <div class="spacer"></div>
 <?php require APPROOT . '/views/inc/backbtn.php'; ?>
-<div class="regcard sand">
-  <div class="post post_head--title">
+<div class="regcard milki">
+  <div class="regcard__title">
     <h2>Neuer Post</h2>
   </div>
 
-  <p>Schreibe einen neuen Beitrag</p>
-  <p class="lead">Fotos sollten kleiner sein als <b>500KB</b></p>
+  <p class="regcard__smalltext">Schreibe einen neuen Beitrag</p>
+  <p class="regcard__smalltext">Fotos sollten kleiner sein als <b>500KB</b></p>
   <form action="<?php echo URLROOT; ?>/posts/add" id="myForm" method="post" enctype="multipart/form-data">
     <div class="drop__zone">
       <span class="drop__zone--prompt">
@@ -28,7 +28,7 @@
       <textarea name="body" class="form-control form-control-lg <?php echo (!empty($data['body_err'])) ? 'is-invalid' : ''; ?>"><?php echo $data['body']; ?></textarea>
       <span class="invalid-feedback"><?php echo $data['body_err']; ?></span>
     </div>
-    <input type="submit" class="button button__success" value="Senden">
+    <input type="submit" class="button button__send" value="Veröffentlichen">
   </form>
 </div>
 <?php require APPROOT . '/views/inc/footer.php'; ?>

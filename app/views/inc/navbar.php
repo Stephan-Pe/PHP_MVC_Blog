@@ -1,6 +1,6 @@
   <nav class="topnav" aria-label="top navigation">
     <div class="topnav__brand">
-      <a class="navbar-brand" href="<?php echo URLROOT; ?>"><?php echo SITENAME; ?></a>
+      <a class="brandname" href="<?php echo URLROOT; ?>"><?php echo SITENAME; ?></a>
 
     </div>
     <div class="topnav__menu">
@@ -40,16 +40,21 @@
 
   </nav>
   <main class="main cf">
-    <?php if (isset($_SESSION['user_id'])) : ?>
-      <span class="user__info">
-        <?php require_once(APPROOT . '/helpers/datetime.php');
-        createDay(); ?>
-        Willkommen <?php echo $_SESSION['user_name']; ?>
-      </span>
-    <?php else : ?>
-      <span class="user__info">
+    <div class="user__info">
+      <?php if (isset($_SESSION['user_id'])) : ?>
 
-        <?php require_once(APPROOT . '/helpers/datetime.php');
-        createDay(); ?>
-      </span>
-    <?php endif; ?>
+        <span>
+          <?php require_once(APPROOT . '/helpers/datetime.php');
+          createDay(); ?></span>
+        <span>
+          Willkommen <?php echo $_SESSION['user_name']; ?>
+        </span>
+      <?php else : ?>
+        <span>
+
+          <?php require_once(APPROOT . '/helpers/datetime.php');
+          createDay(); ?>
+        </span>
+
+      <?php endif; ?>
+    </div>

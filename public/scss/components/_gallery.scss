@@ -1,0 +1,66 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/breakpoints" as *;
+@use "../abstracts/helpers" as *;
+
+.gallery {
+  background-color: rgba($gray, 0.85);
+  margin: 4rem 0;
+  padding: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  div {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1rem;
+    transition: all 450ms ease;
+    span {
+      opacity: 0;
+      color: $white;
+      line-height: 1.8;
+      font-size: clamp(1.15rem, calc(2vw + 0.8rem), 1.4rem);
+    }
+    &:hover,
+    &:focus {
+      background: $coral;
+      span {
+        opacity: 1;
+      }
+    }
+  }
+  div::before {
+    content: "";
+    padding-bottom: 100%;
+    display: block;
+  }
+}
+.imgsquare {
+  display: flex;
+  align-items: center;
+}
+.one {
+  background-image: url(../img/test1.jpg);
+}
+.two {
+  background-image: url(../img/test3.jpg);
+}
+.three {
+  background-image: url(../img/test4.jpg);
+}
+.four {
+  background-image: url(../img/test5.jpg);
+}
+.five {
+  background-image: url(../img/test6.jpg);
+}
+.six {
+  background-image: url(../img/test8.jpg);
+}
+.seven {
+  background-image: url(../img/test9.jpg);
+}
+.eight {
+  background-image: url(../img/test11.jpg);
+}

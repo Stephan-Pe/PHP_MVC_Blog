@@ -2,17 +2,15 @@
 @use "../abstracts/breakpoints" as *;
 .button {
   font-size: clamp(1rem, -0.875rem + 3vw, 1.4rem);
-  padding: 0.6rem 1rem;
   color: $body;
-  -moz-hyphens: none;
-  white-space: nowrap;
-  hyphens: none;
   margin: 2rem 0;
   text-decoration: none;
+  text-align: center;
 }
 .button__primary {
   border-radius: 10px;
   background: $turq;
+  padding: 1rem 0;
 }
 #pencil {
   fill: $body;
@@ -30,11 +28,21 @@
   outline: none !important;
   font-weight: 600;
   color: $header;
+  padding: 1rem 0;
+}
+.button__send {
+  color: $body;
+  background-color: $turq;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  border: 1px solid transparent;
 }
 .button__success {
   color: $body;
-  background-color: $tango;
+  background-color: $coral;
   font-weight: 600;
+  padding: 1rem;
   border-radius: 0.3rem;
   border: 1px solid transparent;
 }

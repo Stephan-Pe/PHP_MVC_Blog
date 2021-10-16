@@ -13,6 +13,6 @@
     font-size: clamp(2rem, -0.875rem + 8.333vw, 2.6rem);
   }
   &--button {
-    display: inline-block;
+    display: flex;
   }
 }

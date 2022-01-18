@@ -1,6 +1,6 @@
 <? require APPROOT . '/views/inc/header.php'; ?>
 <div class="wrapper">
-  <div class="hero">
+  <div class="hero spacing">
 
     <h1 class="about__lead"><?php echo $data['title']; ?></h1>
     <p class="about__text"><?php echo $data['info']; ?></p>

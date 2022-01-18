@@ -13,7 +13,7 @@
   </div>
 </div>
 <?php foreach ($data['posts'] as $post) : ?>
-  <div class="regcard milki">
+  <div class="regcard milki spacing">
     <h4 class="regcard__title"><?php echo $post->title; ?></h4>
     <img class="regcard__img" src="<?php echo $post->image; ?>" alt="<?php echo $post->title; ?>">
     <div class="regcard__info">

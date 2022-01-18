@@ -2,8 +2,10 @@ export const toggleNav = () => {
   const navmenu = document.querySelector(".topnav__menu");
   const toggle = document.querySelector(".topnav__toggle");
   const links = document.querySelectorAll(".topnav__link");
+  const body = document.querySelector("body");
   toggle.addEventListener("click", () => {
     navmenu.classList.toggle("active");
+    body.classList.toggle('fixed');
     links.forEach((link, index) => {
       if (link.style.animation) {
         link.style.animation = "";

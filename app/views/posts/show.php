@@ -14,7 +14,7 @@
     <?php if ($data['post']->user_id == $_SESSION['user_id']) : ?>
         <hr>
         <div class="row justify-content-between px-4">
-            <a href="<?php echo URLROOT; ?>/posts/edit/<?php echo $data['post']->id; ?>" class="button button__primary ">Editieren</a>
+            <a href="<?php echo URLROOT; ?>/posts/edit/<?php echo $data['post']->id; ?>" type="button" class="button button__primary ">Editieren</a>
 
             <form class="form-inline pull-right" action="<?php echo URLROOT; ?>/posts/delete/<?php echo $data['post']->id; ?>" method="post">
                 <input type="submit" value="Löschen" class="button button__success">

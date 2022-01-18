@@ -12,19 +12,28 @@
 @use "./components/addposts";
 @use "./components/capricon";
 @use "./components/gallery";
+@use "./components/mainpage";
+
+:root {
+  --spacer: 5%;
+}
 
 html {
   position: relative;
   width: 100%;
   height: 100%;
+  hyphens: auto;
 }
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.15rem;
   display: flex !important;
   flex-direction: column;
   min-height: 100%;
   width: 100%;
+}
+.fixed{
+  position: fixed;
 }
 body.active {
   overflow-y: hidden;
@@ -34,7 +43,9 @@ body.active {
   width: 1.2rem;
   vertical-align: middle;
 }
-
+.spacing > * + * {
+  margin-top: var(--spacer, 2rem);
+}
 .lorem {
   opacity: 0;
 }

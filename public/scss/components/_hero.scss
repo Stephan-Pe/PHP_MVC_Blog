@@ -16,29 +16,27 @@
   text-align: center;
 }
 .hero {
-  background-color: rgba($gray, 0.85);
+  width: 100%;
   &__banner {
     display: flex;
     flex-direction: column;
     position: relative;
     align-items: center;
     justify-content: end;
-    background-color: $bg;
     width: 100%;
     height: 14rem;
     &--lead {
-      font-family: "Architects Daughter", cursive;
       position: absolute;
       color: $coral;
       top: 10%;
-      font-style: italic;
       text-align: center;
+      font-weight: 600;
       letter-spacing: 2px;
-      font-size: clamp(4rem, calc(8vw + 1rem), 8rem);
+      font-size: clamp(3rem, calc(5vw + 1rem), 4rem);
       z-index: 3;
     }
     &--img {
-      width: 86%;
+      width: 100%;
       margin-left: 0;
       margin-right: auto;
       aspect-ratio: 16/9;
@@ -48,15 +46,18 @@
       background-repeat: no-repeat;
     }
   }
+  &__text{
+    width: 90%;
+    margin: auto;
+  }
 
   &__sublead {
-    text-align: center;
-    line-height: 2.5;
-    font-size: clamp(1.1rem, calc(2vw + 0.8rem), 2.4rem);
+    margin: 1rem 0 2rem;
+    font-weight: 600;
+    font-size: clamp(1.1rem, calc(2vw + 0.8rem), 2rem);
   }
   &__desc {
     text-align: left;
-    padding: 0.5rem;
     line-height: 1.8;
     font-size: clamp(1.15rem, calc(2vw + 0.8rem), 1.5rem);
   }
@@ -65,7 +66,7 @@
   color: $tango;
   font-weight: 400;
   text-align: center;
-  font-size: clamp(4rem, calc(8vw + 1rem), 8rem);
+  font-size: clamp(3rem, calc(6vw + 1rem), 4rem);
   padding-top: 1rem;
   margin-bottom: 2rem;
 }
@@ -82,11 +83,7 @@
   .hero__banner {
     height: 24rem;
 
-    &--img {
-      width: 76%;
-      left: 0.5rem;
-      bottom: 0.5rem;
-    }
+
 
     &--desc {
       text-align: left;
@@ -102,12 +99,6 @@
 @media (min-width: $large) {
   .hero__banner {
     height: 36rem;
-
-    &--img {
-      width: 82%;
-      left: 0.5rem;
-      bottom: 0.5rem;
-    }
 
     &--desc {
       text-align: left;

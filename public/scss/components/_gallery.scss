@@ -3,15 +3,14 @@
 @use "../abstracts/helpers" as *;
 
 .gallery {
-  background-color: rgba($gray, 0.85);
-  margin: 4rem 0;
-  padding: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;
   div {
-    background-size: cover;
+    background-size: 94%;
     background-repeat: no-repeat;
     background-position: center;
     padding: 1rem;
@@ -39,6 +38,7 @@
 .imgsquare {
   display: flex;
   align-items: center;
+  background-color: rgba($coral, 0.85);
 }
 .one {
   background-image: url(../img/test1.jpg);
